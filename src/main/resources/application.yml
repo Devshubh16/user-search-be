@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+    include-exception: true
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  openapi:
+    title: "User API"
+    version: "1.0"
+  retry:
+    maxAttempts: 3
+    backoff:
+      delay: 2000
+
+logging:
+  level:
+    root: INFO
+    com.springbe: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 2s
+        minimumNumberOfCalls: 5
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 10s
+
+springdoc:
+ api-docs:
+  enabled: true
+ swagger-ui:
+  path: /swagger-ui.html
+  operationsSorter: method
+  tagsSorter: alpha
+
