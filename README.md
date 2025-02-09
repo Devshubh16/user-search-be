@@ -5,7 +5,7 @@ This is a Spring Boot-based backend API that:
 - Loads user data from an external dataset into an in-memory H2 database.
 - Provides RESTful endpoints for searching and retrieving user details.
 - Implements resilience mechanisms (Retry, Circuit Breaker) to handle API failures.
-- Includes Swagger documentation for easy API exploration.
+- Includes Swagger documentation for easy API exploration.(In Progress)
 
 ---
 
@@ -109,9 +109,4 @@ user-search-be/
 
 ## 🤝 Contributing
 Feel free to fork and submit a pull request! 😊
-
----
-
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
 
